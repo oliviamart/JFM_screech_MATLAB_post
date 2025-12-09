@@ -12,11 +12,13 @@ clear all
 nRnT = 70*70; % number of points Nr*Nt
 num_eigs_tot = 200; % number of eigenvalues computed
 x_val = 4;
-freq_vec = [0.0025, 0.0975, 0.1975];
-input_dir = '../Mj_169/main_runs/mu1_gjm/main_runs/';
+freq_vec = [0.00:0.0025:0.35];
+input_dir = '../../';
+out_dir = '../';
 
 U_inf = 0.007;
-M = 1.69;
+M = 1.78;
+mu = 1;
 h = 0.010; b = 0.040; 
 
 %%
@@ -95,7 +97,7 @@ D0 = load(filename).D0;
 T0 = load(filename).T0;
 
 St = get_St(freq_vec, M, h, b);
-filename_out = strcat('eigs_sorted_Mj_', num2str(M), '_xVal_', num2str(x_val), ...
+filename_out = strcat(out_dir, 'eigs_sorted_Mj_', num2str(M), '_xVal_', num2str(x_val), ...
     '_mu', num2str(mu), '.mat');
 
 save(filename_out, 'R', 'Th', 'D0', 'T0', 'eigvals_sorted', ...
