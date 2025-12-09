@@ -13,8 +13,8 @@ nRnT = 70*70; % number of points Nr*Nt
 num_eigs_tot = 200; % number of eigenvalues computed
 x_val = 4;
 freq_vec = [0.00:0.0025:0.35];
-input_dir = '../../';
-out_dir = '../';
+input_dir = '../../../../';
+out_dir = '../../';
 
 U_inf = 0.007;
 M = 1.78;
@@ -100,8 +100,14 @@ St = get_St(freq_vec, M, h, b);
 filename_out = strcat(out_dir, 'eigs_sorted_Mj_', num2str(M), '_xVal_', num2str(x_val), ...
     '_mu', num2str(mu), '.mat');
 
-save(filename_out, 'R', 'Th', 'D0', 'T0', 'eigvals_sorted', ...
-    'eigvect_sorted', 'St', 'freq_vec');
+filename_out2 = strcat(out_dir, 'eigvects_sorted_Mj_', num2str(M), '_xVal_', num2str(x_val), ...
+    '_mu', num2str(mu), '.mat');
+
+save(filename_out, 'eigvals_sorted', ...
+     'St', 'freq_vec', '-v7.3');
+
+save(filename_out2, 'R', 'Th', 'D0', 'T0', ...
+    'eigvect_sorted', '-v7.3');
 
 %% PLOT
 
