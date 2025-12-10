@@ -1,24 +1,18 @@
+function [] = sort_eigenvalues_main(x_val, U_inf, M, Nr, Nt, num_eigs_tot, mu)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Get eigenvalues in region of the spectrum of interest
 % and sort them
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Olivia Martin
-clear all
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % INPUT PARAMETERS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-nRnT = 70*70; % number of points Nr*Nt
-num_eigs_tot = 200; % number of eigenvalues computed
-x_val = 4;
+nRnT = Nr*Nt; % number of points Nr*Nt
 freq_vec = [0.00:0.0025:0.35];
 input_dir = '../../../../';
 out_dir = '../../';
-
-U_inf = 0.005;
-M = 1.78;
-mu = 1;
 h = 0.010; b = 0.040; 
 
 %%
@@ -34,7 +28,7 @@ for i = 1:length(freq_vec)
     eigvals_vec = zeros(num_eigs_tot, 1);
 
     % LOAD DATA 
-    filename = strcat(input_dir, 'results_x', num2str(x_val), '/Nr70_Nt70_f', ...
+    filename = strcat(input_dir, 'results_x', num2str(x_val), '/Nr', num2str(Nr), '_Nt', num2str(Nt),'_f', ...
         num2str(freq_vec(i)), '_mu1_x', num2str(x_val), '.mat');
     if isfile(filename)
         load(filename);
@@ -125,3 +119,6 @@ save(filename_out2, 'R', 'Th', 'D0', 'T0', ...
 % 
 % pcolor(R.*cos(Th), R.*sin(Th), abs(p))
 % shading interp
+
+
+end
