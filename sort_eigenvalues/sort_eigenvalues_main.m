@@ -16,7 +16,7 @@ freq_vec = [0.00:0.0025:0.35];
 input_dir = '../../../../';
 out_dir = '../../';
 
-U_inf = 0.007;
+U_inf = 0.005;
 M = 1.78;
 mu = 1;
 h = 0.010; b = 0.040; 
@@ -98,10 +98,10 @@ T0 = load(filename).T0;
 
 St = get_St(freq_vec, M, h, b);
 filename_out = strcat(out_dir, 'eigs_sorted_Mj_', num2str(M), '_xVal_', num2str(x_val), ...
-    '_mu', num2str(mu), '.mat');
+    '_mu', num2str(mu), '_Uinf', num2str(U_inf), '.mat');
 
 filename_out2 = strcat(out_dir, 'eigvects_sorted_Mj_', num2str(M), '_xVal_', num2str(x_val), ...
-    '_mu', num2str(mu), '.mat');
+    '_mu', num2str(mu), '_Uinf', num2str(U_inf),'.mat');
 
 save(filename_out, 'eigvals_sorted', ...
      'St', 'freq_vec', '-v7.3');
